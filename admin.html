@@ -1,0 +1,949 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#7654d5">
+<title>T.OAT | Teacher Dashboard</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary:#7958d8;
+  --dark:#5c3eb4;
+  --light:#eee8ff;
+  --bg:#f7f5fc;
+  --text:#29243b;
+  --muted:#89849a;
+  --border:#ece8f5;
+  --green:#22a879;
+  --red:#e34e69;
+  --orange:#e99b37;
+}
+* {box-sizing:border-box;margin:0;padding:0}
+body {
+  font-family:'Kanit',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+button,input,select {font:inherit}
+button {border:0;cursor:pointer}
+.hidden {display:none!important}
+
+.topbar {
+  height:70px;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 5%;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+.brand {display:flex;align-items:center;gap:11px}
+.logo {
+  width:43px;height:43px;
+  display:grid;place-items:center;
+  border-radius:14px;color:white;
+  background:linear-gradient(135deg,#ad95f8,#6847c5);
+  font:800 24px Inter;
+  box-shadow:0 5px 15px #7958d833;
+}
+.brand-name {font-size:17px;font-weight:600}
+.brand-sub {font:10px Inter;color:var(--muted)}
+.top-actions {display:flex;gap:9px;align-items:center}
+
+.container {width:min(1200px,94%);margin:30px auto 60px}
+
+.login-wrap {
+  min-height:calc(100vh - 130px);
+  display:grid;place-items:center;
+}
+.login-card {
+  width:min(420px,100%);
+  background:white;
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:35px;
+  box-shadow:0 15px 45px #45317a12;
+  text-align:center;
+}
+.login-icon {
+  width:70px;height:70px;
+  border-radius:22px;
+  margin:0 auto 18px;
+  display:grid;place-items:center;
+  font-size:30px;
+  color:white;
+  background:linear-gradient(135deg,#ad95f8,#6847c5);
+}
+.login-card h1 {font-size:23px;font-weight:600}
+.login-card p {font-size:13px;color:var(--muted);margin:5px 0 25px}
+.input-label {display:block;text-align:left;font-size:13px;margin-bottom:7px}
+.input {
+  width:100%;height:49px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:0 14px;
+  outline:none;
+  background:#fcfbff;
+}
+.input:focus {border-color:var(--primary);box-shadow:0 0 0 3px #7958d818}
+
+.btn {
+  min-height:42px;
+  border-radius:11px;
+  padding:0 17px;
+  font-weight:500;
+  transition:.2s;
+}
+.btn-primary {
+  color:white;
+  background:linear-gradient(120deg,#8b6be7,#6847c5);
+  box-shadow:0 5px 14px #7958d82b;
+}
+.btn-primary:hover {transform:translateY(-1px)}
+.btn-light {background:#f1edfa;color:#625b75}
+.btn-danger {background:#fff0f2;color:#d83d5b}
+.btn-block {width:100%;margin-top:17px}
+.btn:disabled {opacity:.5;cursor:not-allowed}
+
+.error {
+  color:#d83d5b;
+  background:#fff0f2;
+  padding:10px;
+  border-radius:9px;
+  font-size:12px;
+  margin-top:12px;
+}
+
+.page-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:22px;
+}
+.page-heading h1 {font-size:25px;font-weight:600}
+.page-heading p {font-size:12px;color:var(--muted)}
+
+.stats {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+.stat {
+  background:white;
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:20px;
+  box-shadow:0 8px 24px #45317a09;
+}
+.stat-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.stat-label {font-size:12px;color:var(--muted)}
+.stat-icon {
+  width:35px;height:35px;
+  border-radius:11px;
+  display:grid;place-items:center;
+  background:#f1ecff;
+  font-size:17px;
+}
+.stat-value {
+  font:800 29px Inter;
+  margin-top:13px;
+  color:var(--primary);
+}
+.stat-sub {font-size:11px;color:var(--muted);margin-top:4px}
+
+.panel {
+  background:white;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:22px;
+  margin-top:19px;
+  box-shadow:0 8px 24px #45317a09;
+}
+.panel-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:18px;
+}
+.panel-title {font-size:17px;font-weight:600}
+.panel-sub {font-size:11px;color:var(--muted)}
+
+.class-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:13px;
+}
+.class-card {
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:16px;
+  background:#fcfbff;
+}
+.class-card h3 {font-size:14px;font-weight:600}
+.class-count {font:800 26px Inter;color:var(--primary);margin:8px 0}
+.class-meta {font-size:11px;color:var(--muted);line-height:1.9}
+
+.distribution {display:grid;gap:13px}
+.dist-row {
+  display:grid;
+  grid-template-columns:65px 1fr 35px;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+}
+.dist-track {
+  height:10px;
+  background:#f0edf6;
+  border-radius:20px;
+  overflow:hidden;
+}
+.dist-fill {
+  height:100%;
+  border-radius:20px;
+  background:linear-gradient(90deg,#ad95f8,#6847c5);
+}
+
+.filters {
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+.filters .input {width:auto;min-width:150px;height:40px;font-size:12px}
+
+.table-wrap {overflow-x:auto}
+table {width:100%;border-collapse:collapse;min-width:720px}
+th,td {
+  padding:12px 10px;
+  text-align:left;
+  border-bottom:1px solid #f0edf6;
+  font-size:12px;
+  white-space:nowrap;
+}
+th {color:var(--muted);font-weight:500;background:#fcfbff}
+td {color:#4b455d}
+.score-tag {
+  display:inline-block;
+  padding:4px 9px;
+  border-radius:7px;
+  background:#f0eaff;
+  color:#6746c4;
+  font:700 11px Inter;
+}
+.flag {
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:7px;
+  background:#fff0f2;
+  color:#d83d5b;
+  font-size:10px;
+}
+.clean {
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:7px;
+  background:#e9f8f1;
+  color:#18865f;
+  font-size:10px;
+}
+.detail-btn {
+  background:#f1edfa;color:#6746c4;
+  border-radius:8px;padding:6px 10px;
+  font-size:11px;
+}
+
+.empty {
+  padding:35px;text-align:center;
+  color:var(--muted);font-size:13px;
+}
+.loading {
+  padding:30px;text-align:center;
+  color:var(--muted);font-size:13px;
+}
+.footer {
+  text-align:center;
+  color:#aaa4b7;
+  font-size:11px;
+  margin-top:30px;
+  line-height:1.8;
+}
+
+/* DETAIL MODAL */
+.modal {
+  position:fixed;inset:0;
+  z-index:100;
+  background:#21183c88;
+  display:grid;place-items:center;
+  padding:15px;
+}
+.modal-card {
+  width:min(700px,100%);
+  max-height:88vh;
+  overflow:auto;
+  background:white;
+  border-radius:20px;
+  padding:23px;
+  box-shadow:0 20px 60px #0003;
+}
+.modal-head {
+  display:flex;justify-content:space-between;
+  align-items:center;gap:12px;margin-bottom:18px;
+}
+.modal-head h2 {font-size:19px}
+.close-btn {
+  width:34px;height:34px;
+  border-radius:10px;
+  background:#f1edfa;color:#625b75;
+  font-size:19px;
+}
+.detail-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;margin-bottom:18px;
+}
+.detail-box {
+  background:#f8f6fc;
+  padding:12px;border-radius:11px;
+}
+.detail-box span {font-size:10px;color:var(--muted)}
+.detail-box strong {display:block;font-size:17px;margin-top:4px}
+.answer-list {display:grid;gap:9px}
+.answer-item {
+  border:1px solid var(--border);
+  padding:12px;border-radius:10px;
+  font-size:12px;
+}
+.answer-item.correct {border-color:#b9e8d4;background:#f2fbf6}
+.answer-item.wrong {border-color:#f4c4cc;background:#fff7f8}
+.answer-status {font-weight:600;margin-top:5px}
+.event-list {margin-top:18px}
+.event-row {
+  font-size:11px;padding:9px 0;
+  border-bottom:1px solid #f0edf6;
+  display:flex;justify-content:space-between;gap:12px;
+}
+
+@media(max-width:800px) {
+  .stats {grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px) {
+  .topbar {padding:0 4%;height:62px}
+  .brand-name {font-size:14px}
+  .brand-sub {font-size:8px}
+  .logo {width:36px;height:36px;font-size:21px}
+  .container {margin-top:20px}
+  .stats {gap:9px}
+  .stat {padding:14px}
+  .stat-value {font-size:23px}
+  .class-grid {grid-template-columns:1fr}
+  .login-card {padding:25px 20px}
+  .page-heading h1 {font-size:21px}
+  .detail-grid {grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">O</div>
+    <div>
+      <div class="brand-name">T.OAT ENGLISH</div>
+      <div class="brand-sub">TEACHER DASHBOARD</div>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button class="btn btn-light" onclick="location.href='index.html'">← หน้าสอบ</button>
+    <button id="logoutBtn" class="btn btn-danger hidden" onclick="logout()">ออกจากระบบ</button>
+  </div>
+</header>
+
+<!-- LOGIN -->
+<main id="loginPage" class="container login-wrap">
+  <section class="login-card">
+    <div class="login-icon">🔐</div>
+    <h1>Teacher Login</h1>
+    <p>T.OAT ONLINE EXAMINATION SYSTEM</p>
+
+    <form id="loginForm">
+      <label class="input-label" for="pinInput">Teacher PIN</label>
+      <input
+        id="pinInput"
+        class="input"
+        type="password"
+        inputmode="numeric"
+        maxlength="12"
+        placeholder="กรอกรหัส PIN"
+        autocomplete="current-password"
+        required
+      >
+      <button id="loginBtn" class="btn btn-primary btn-block" type="submit">
+        เข้าสู่ระบบ →
+      </button>
+    </form>
+    <div id="loginError" class="error hidden"></div>
+  </section>
+</main>
+
+<!-- DASHBOARD -->
+<main id="dashboardPage" class="container hidden">
+
+  <div class="page-heading">
+    <div>
+      <h1>📊 Teacher Dashboard</h1>
+      <p>Present Perfect Simple • Pre-Test Results</p>
+    </div>
+    <div class="top-actions">
+      <button class="btn btn-light" onclick="loadDashboard()">↻ รีเฟรชข้อมูล</button>
+      <button class="btn btn-primary" onclick="exportCSV()">↓ Export CSV</button>
+    </div>
+  </div>
+
+  <section class="stats">
+    <div class="stat">
+      <div class="stat-top">
+        <span class="stat-label">ผู้เข้าสอบทั้งหมด</span>
+        <span class="stat-icon">👨‍🎓</span>
+      </div>
+      <div class="stat-value" id="totalStudents">0</div>
+      <div class="stat-sub">Total Students</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-top">
+        <span class="stat-label">คะแนนเฉลี่ย</span>
+        <span class="stat-icon">📈</span>
+      </div>
+      <div class="stat-value" id="averageScore">0.00</div>
+      <div class="stat-sub">Average Score / 15</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-top">
+        <span class="stat-label">คะแนนสูงสุด</span>
+        <span class="stat-icon">🏆</span>
+      </div>
+      <div class="stat-value" id="highestScore">0</div>
+      <div class="stat-sub">Highest Score</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-top">
+        <span class="stat-label">พบเหตุการณ์ผิดปกติ</span>
+        <span class="stat-icon">⚠️</span>
+      </div>
+      <div class="stat-value" id="flaggedStudents">0</div>
+      <div class="stat-sub">Students with Events</div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <div>
+        <div class="panel-title">ผลสอบแยกตามห้องเรียน</div>
+        <div class="panel-sub">Class Performance</div>
+      </div>
+    </div>
+    <div class="class-grid" id="classGrid">
+      <div class="loading">กำลังโหลดข้อมูล...</div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <div>
+        <div class="panel-title">การกระจายของคะแนน</div>
+        <div class="panel-sub">Score Distribution</div>
+      </div>
+    </div>
+    <div class="distribution" id="distribution">
+      <div class="loading">กำลังโหลดข้อมูล...</div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <div>
+        <div class="panel-title">รายชื่อนักเรียนและผลสอบ</div>
+        <div class="panel-sub">Student Examination Records</div>
+      </div>
+      <div class="filters">
+        <input id="searchInput" class="input" placeholder="ค้นหาชื่อ / นามสกุล" oninput="renderStudents()">
+        <select id="classFilter" class="input" onchange="renderStudents()">
+          <option value="">ทุกห้องเรียน</option>
+          <option value="ม.6/1">ม.6/1</option>
+          <option value="ม.6/2">ม.6/2</option>
+          <option value="ม.6/3">ม.6/3</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>วันที่สอบ</th>
+            <th>เลขที่</th>
+            <th>ชื่อ - นามสกุล</th>
+            <th>ชั้น</th>
+            <th>คะแนน</th>
+            <th>เปอร์เซ็นต์</th>
+            <th>เหตุการณ์</th>
+            <th>รายละเอียด</th>
+          </tr>
+        </thead>
+        <tbody id="studentTable">
+          <tr><td colspan="8" class="empty">กำลังโหลดข้อมูล...</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="tableCount" class="panel-sub" style="margin-top:13px"></div>
+  </section>
+
+  <footer class="footer">
+    T.OAT ENGLISH • TEACHER DASHBOARD<br>
+    Thanakhan-Oomsin School
+  </footer>
+</main>
+
+<!-- DETAIL MODAL -->
+<div id="detailModal" class="modal hidden" onclick="if(event.target===this)closeDetail()">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h2>รายละเอียดผลสอบ</h2>
+      <button class="close-btn" onclick="closeDetail()">×</button>
+    </div>
+    <div id="detailContent" class="loading">กำลังโหลด...</div>
+  </div>
+</div>
+
+<script>
+/* =========================================
+   CONFIGURATION
+========================================= */
+const API_URL = 'https://script.google.com/macros/s/AKfycbyuyWaExc1pil8petIYlrBX2K5m60LK7N4GQsM2-x43j8jBcNJO2lH-jrPosnOR0KsP6A/exec';
+
+let adminToken = sessionStorage.getItem('toat_admin_token') || '';
+let dashboardData = null;
+let allStudents = [];
+
+/* =========================================
+   JSONP API CLIENT
+========================================= */
+function api(action, data = {}) {
+  return new Promise((resolve, reject) => {
+    const callbackName =
+      'toatAdminCallback_' + Date.now() + '_' +
+      Math.random().toString(36).slice(2);
+
+    const script = document.createElement('script');
+    let finished = false;
+
+    const timeout = setTimeout(() => {
+      finish(new Error('หมดเวลารอการตอบกลับจากเซิร์ฟเวอร์'));
+    }, 20000);
+
+    function finish(error, result) {
+      if (finished) return;
+      finished = true;
+      clearTimeout(timeout);
+      script.remove();
+      delete window[callbackName];
+      if (error) reject(error);
+      else resolve(result);
+    }
+
+    window[callbackName] = result => {
+      if (!result || result.success === false) {
+        finish(new Error(result?.message || 'API request failed'));
+        return;
+      }
+      finish(null, result);
+    };
+
+    const params = new URLSearchParams();
+    params.set('callback', callbackName);
+    params.set('data', JSON.stringify({action, ...data}));
+    params.set('_', String(Date.now()));
+
+    script.onerror = () => {
+      finish(new Error('ไม่สามารถเชื่อมต่อ Google Apps Script ได้'));
+    };
+
+    script.src = API_URL + '?' + params.toString();
+    document.head.appendChild(script);
+  });
+}
+
+/* =========================================
+   LOGIN
+========================================= */
+document.getElementById('loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+
+  const pin = document.getElementById('pinInput').value.trim();
+  const button = document.getElementById('loginBtn');
+  const errorBox = document.getElementById('loginError');
+
+  errorBox.classList.add('hidden');
+  button.disabled = true;
+  button.textContent = 'กำลังตรวจสอบ...';
+
+  try {
+    const result = await api('login', {pin});
+    adminToken = result.token;
+    sessionStorage.setItem('toat_admin_token', adminToken);
+    showDashboard();
+    await loadDashboard();
+  } catch (err) {
+    errorBox.textContent = err.message || 'เข้าสู่ระบบไม่สำเร็จ';
+    errorBox.classList.remove('hidden');
+  } finally {
+    button.disabled = false;
+    button.textContent = 'เข้าสู่ระบบ →';
+  }
+});
+
+function showDashboard() {
+  document.getElementById('loginPage').classList.add('hidden');
+  document.getElementById('dashboardPage').classList.remove('hidden');
+  document.getElementById('logoutBtn').classList.remove('hidden');
+}
+
+function showLogin() {
+  document.getElementById('dashboardPage').classList.add('hidden');
+  document.getElementById('loginPage').classList.remove('hidden');
+  document.getElementById('logoutBtn').classList.add('hidden');
+}
+
+/* =========================================
+   LOGOUT
+========================================= */
+async function logout() {
+  try {
+    if (adminToken) await api('logout', {token:adminToken});
+  } catch (err) {
+    console.warn(err);
+  }
+
+  adminToken = '';
+  sessionStorage.removeItem('toat_admin_token');
+  dashboardData = null;
+  allStudents = [];
+  showLogin();
+  document.getElementById('pinInput').value = '';
+}
+
+/* =========================================
+   LOAD DASHBOARD
+========================================= */
+async function loadDashboard() {
+  const table = document.getElementById('studentTable');
+  table.innerHTML = '<tr><td colspan="8" class="empty">กำลังโหลดข้อมูล...</td></tr>';
+
+  try {
+    const result = await api('dashboard', {token:adminToken});
+    dashboardData = result;
+    allStudents = result.students || [];
+    renderStats(result.stats || {});
+    renderClasses(result.classes || []);
+    renderDistribution(result.distribution || []);
+    renderStudents();
+  } catch (err) {
+    if (/expired|session/i.test(err.message)) {
+      adminToken = '';
+      sessionStorage.removeItem('toat_admin_token');
+      showLogin();
+      document.getElementById('loginError').textContent =
+        'Session หมดอายุ กรุณาเข้าสู่ระบบอีกครั้ง';
+      document.getElementById('loginError').classList.remove('hidden');
+    } else {
+      table.innerHTML =
+        '<tr><td colspan="8" class="empty">' +
+        escapeHTML(err.message) + '</td></tr>';
+    }
+  }
+}
+
+/* =========================================
+   RENDER STATS
+========================================= */
+function renderStats(s) {
+  document.getElementById('totalStudents').textContent = s.total || 0;
+  document.getElementById('averageScore').textContent =
+    Number(s.average || 0).toFixed(2);
+  document.getElementById('highestScore').textContent = s.highest || 0;
+  document.getElementById('flaggedStudents').textContent = s.flagged || 0;
+}
+
+/* =========================================
+   CLASS PERFORMANCE
+========================================= */
+function renderClasses(classes) {
+  const el = document.getElementById('classGrid');
+
+  if (!classes.length) {
+    el.innerHTML = '<div class="empty">ยังไม่มีข้อมูล</div>';
+    return;
+  }
+
+  el.innerHTML = classes.map(c => `
+    <div class="class-card">
+      <h3>${escapeHTML(c.name)}</h3>
+      <div class="class-count">${Number(c.count || 0)} คน</div>
+      <div class="class-meta">
+        คะแนนเฉลี่ย: ${Number(c.average || 0).toFixed(2)} / 15<br>
+        คะแนนสูงสุด: ${Number(c.highest || 0)} / 15
+      </div>
+    </div>
+  `).join('');
+}
+
+/* =========================================
+   SCORE DISTRIBUTION
+========================================= */
+function renderDistribution(items) {
+  const el = document.getElementById('distribution');
+  const max = Math.max(1, ...items.map(x => Number(x.count || 0)));
+
+  if (!items.length) {
+    el.innerHTML = '<div class="empty">ยังไม่มีข้อมูล</div>';
+    return;
+  }
+
+  el.innerHTML = items.map(item => {
+    const count = Number(item.count || 0);
+    const width = count / max * 100;
+
+    return `
+      <div class="dist-row">
+        <span>${escapeHTML(item.label)}</span>
+        <div class="dist-track">
+          <div class="dist-fill" style="width:${width}%"></div>
+        </div>
+        <strong>${count}</strong>
+      </div>
+    `;
+  }).join('');
+}
+
+/* =========================================
+   STUDENT TABLE
+========================================= */
+function renderStudents() {
+  const search = document.getElementById('searchInput').value
+    .trim().toLowerCase();
+  const className = document.getElementById('classFilter').value;
+
+  const filtered = allStudents.filter(s => {
+    const name = `${s.firstName || ''} ${s.lastName || ''}`.toLowerCase();
+    const matchesSearch = !search || name.includes(search);
+    const matchesClass = !className || s.className === className;
+    return matchesSearch && matchesClass;
+  });
+
+  const tbody = document.getElementById('studentTable');
+
+  if (!filtered.length) {
+    tbody.innerHTML =
+      '<tr><td colspan="8" class="empty">ไม่พบข้อมูลนักเรียน</td></tr>';
+  } else {
+    tbody.innerHTML = filtered.map(s => {
+      const date = s.timestamp ? new Date(s.timestamp).toLocaleString('th-TH') : '-';
+      const flagged = Number(s.violations || 0) > 0;
+
+      return `
+        <tr>
+          <td>${escapeHTML(date)}</td>
+          <td>${escapeHTML(s.number)}</td>
+          <td>${escapeHTML((s.firstName || '') + ' ' + (s.lastName || ''))}</td>
+          <td>${escapeHTML(s.className)}</td>
+          <td><span class="score-tag">${Number(s.score || 0)}/${Number(s.total || 15)}</span></td>
+          <td>${Number(s.percentage || 0)}%</td>
+          <td>${flagged
+            ? `<span class="flag">${Number(s.violations)} ครั้ง</span>`
+            : '<span class="clean">ปกติ</span>'}</td>
+          <td><button class="detail-btn" onclick="showDetail('${encodeURIComponent(s.sessionId)}')">ดูรายละเอียด</button></td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  document.getElementById('tableCount').textContent =
+    `แสดง ${filtered.length} จาก ${allStudents.length} รายการ`;
+}
+
+/* =========================================
+   STUDENT DETAIL
+========================================= */
+async function showDetail(encodedId) {
+  const sessionId = decodeURIComponent(encodedId);
+  const modal = document.getElementById('detailModal');
+  const content = document.getElementById('detailContent');
+
+  modal.classList.remove('hidden');
+  content.innerHTML = '<div class="loading">กำลังโหลดรายละเอียด...</div>';
+
+  try {
+    const d = await api('detail', {
+      token:adminToken,
+      sessionId
+    });
+
+    const answerEntries = Object.entries(d.answers || {});
+    const events = d.events || [];
+
+    content.innerHTML = `
+      <h3 style="font-size:16px;margin-bottom:13px">
+        ${escapeHTML(d.name)}
+      </h3>
+
+      <div class="detail-grid">
+        <div class="detail-box">
+          <span>ห้องเรียน</span>
+          <strong>${escapeHTML(d.className)}</strong>
+        </div>
+        <div class="detail-box">
+          <span>เลขที่</span>
+          <strong>${escapeHTML(d.number)}</strong>
+        </div>
+        <div class="detail-box">
+          <span>คะแนน</span>
+          <strong>${Number(d.score || 0)}/${Number(d.total || 15)}</strong>
+        </div>
+        <div class="detail-box">
+          <span>เปอร์เซ็นต์</span>
+          <strong>${Number(d.percentage || 0)}%</strong>
+        </div>
+        <div class="detail-box">
+          <span>เหตุการณ์</span>
+          <strong>${Number(d.violations || 0)}</strong>
+        </div>
+      </div>
+
+      <h3 style="font-size:14px;margin-bottom:10px">รายละเอียดคำตอบ</h3>
+      <div class="answer-list">
+        ${answerEntries.length ? answerEntries.map(([id,a]) => `
+          <div class="answer-item ${a.correct ? 'correct' : 'wrong'}">
+            <strong>ข้อ ${escapeHTML(id)}</strong><br>
+            คำตอบ: ${escapeHTML(a.answer || 'ไม่ได้ตอบ')}
+            <div class="answer-status">
+              ${a.correct ? '✓ ถูกต้อง' : '✕ ไม่ถูกต้อง'}
+            </div>
+          </div>
+        `).join('') : '<div class="empty">ไม่มีรายละเอียดคำตอบ</div>'}
+      </div>
+
+      <div class="event-list">
+        <h3 style="font-size:14px;margin-bottom:8px">ประวัติเหตุการณ์</h3>
+        ${events.length ? events.map(e => `
+          <div class="event-row">
+            <span>${escapeHTML(e.event)}</span>
+            <span>${escapeHTML(e.time ? new Date(e.time).toLocaleString('th-TH') : '')}</span>
+          </div>
+        `).join('') : '<div class="empty">ไม่พบเหตุการณ์ผิดปกติ</div>'}
+      </div>
+    `;
+  } catch (err) {
+    content.innerHTML =
+      '<div class="error">' + escapeHTML(err.message) + '</div>';
+  }
+}
+
+function closeDetail() {
+  document.getElementById('detailModal').classList.add('hidden');
+}
+
+/* =========================================
+   CSV EXPORT
+========================================= */
+function exportCSV() {
+  if (!allStudents.length) {
+    alert('ยังไม่มีข้อมูลสำหรับส่งออก');
+    return;
+  }
+
+  const headers = [
+    'วันที่สอบ','เลขที่','ชื่อ','นามสกุล',
+    'ชั้น','คะแนน','คะแนนเต็ม','เปอร์เซ็นต์','เหตุการณ์'
+  ];
+
+  const rows = allStudents.map(s => [
+    s.timestamp || '',
+    s.number || '',
+    s.firstName || '',
+    s.lastName || '',
+    s.className || '',
+    s.score || 0,
+    s.total || 15,
+    s.percentage || 0,
+    s.violations || 0
+  ]);
+
+  const csv = [headers, ...rows]
+    .map(row => row.map(value =>
+      '"' + String(value).replace(/"/g, '""') + '"'
+    ).join(','))
+    .join('\r\n');
+
+  const blob = new Blob(['\uFEFF' + csv], {
+    type:'text/csv;charset=utf-8;'
+  });
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'TOAT_Exam_Results.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* =========================================
+   HTML ESCAPE
+========================================= */
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  })[char]);
+}
+
+/* =========================================
+   INITIAL SESSION CHECK
+========================================= */
+(async function init() {
+  if (!adminToken) return;
+
+  showDashboard();
+
+  try {
+    await loadDashboard();
+  } catch (err) {
+    console.error(err);
+  }
+})();
+</script>
+
+</body>
+</html>
