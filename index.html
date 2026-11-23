@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -90,6 +89,37 @@ button {
 .online {
   color:var(--green);
   font-size:12px;
+}
+
+/* TEACHER DASHBOARD BUTTON */
+.topbar-actions {
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.teacher-link {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  min-height:38px;
+  padding:0 15px;
+  border:1px solid #e5dcff;
+  border-radius:11px;
+  color:#6746c4;
+  background:#f7f3ff;
+  text-decoration:none;
+  font:600 11px Inter,sans-serif;
+  letter-spacing:.2px;
+  transition:.2s;
+}
+
+.teacher-link:hover {
+  color:#fff;
+  background:linear-gradient(120deg,#8b6be7,#6847c5);
+  border-color:transparent;
+  transform:translateY(-1px);
 }
 
 .container {
@@ -446,6 +476,39 @@ button {
     height:62px;
   }
 
+  .topbar-actions {
+    gap:7px;
+  }
+
+  .teacher-link {
+    font-size:9px;
+    padding:0 8px;
+    min-height:34px;
+    gap:4px;
+  }
+
+  .online {
+    font-size:9px;
+  }
+
+  .brand {
+    gap:7px;
+  }
+
+  .logo {
+    width:36px;
+    height:36px;
+    font-size:21px;
+  }
+
+  .brand-name {
+    font-size:14px;
+  }
+
+  .brand-sub {
+    font-size:8px;
+  }
+
   .container {
     margin-top:20px;
   }
@@ -486,7 +549,14 @@ button {
       <div class="brand-sub">ONLINE EXAMINATION SYSTEM</div>
     </div>
   </div>
-  <div class="online">● ONLINE EXAM</div>
+
+  <div class="topbar-actions">
+    <a href="admin.html" class="teacher-link" aria-label="เปิด Teacher Dashboard">
+      <span aria-hidden="true">🔐</span>
+      TEACHER DASHBOARD
+    </a>
+    <div class="online">● ONLINE EXAM</div>
+  </div>
 </header>
 
 <main class="container">
@@ -555,7 +625,6 @@ button {
     </div>
   </section>
 
-
   <!-- EXAM -->
   <section id="exam" class="hidden">
     <div class="card">
@@ -596,7 +665,6 @@ button {
 
     </div>
   </section>
-
 
   <!-- RESULT -->
   <section id="result" class="hidden">
@@ -639,7 +707,6 @@ button {
   </footer>
 
 </main>
-
 
 <script>
 /* =========================================
