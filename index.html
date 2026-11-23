@@ -1,0 +1,1322 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#7656d6">
+<title>T.OAT | PRE-TEST Present Perfect</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary:#7958d8;
+  --primary-dark:#5e3fbd;
+  --primary-light:#eee8ff;
+  --bg:#f7f5fc;
+  --card:#ffffff;
+  --text:#29243b;
+  --muted:#89849a;
+  --border:#ece8f5;
+  --success:#22a879;
+  --danger:#e34e69;
+  --shadow:0 12px 35px rgba(74,52,130,.08);
+}
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body {
+  font-family:'Kanit',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+
+button,input,select {
+  font:inherit;
+}
+
+button {
+  cursor:pointer;
+  border:none;
+}
+
+.topbar {
+  height:72px;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 6%;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand-logo {
+  width:43px;
+  height:43px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#a58af6,#6845cb);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-family:Inter,sans-serif;
+  font-size:23px;
+  font-weight:800;
+  box-shadow:0 5px 15px #7958d844;
+}
+
+.brand-name {
+  font-size:17px;
+  font-weight:600;
+}
+
+.brand-sub {
+  color:var(--muted);
+  font-size:11px;
+  margin-top:-3px;
+}
+
+.top-status {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  color:var(--success);
+}
+
+.status-dot {
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--success);
+}
+
+.container {
+  width:min(960px,92%);
+  margin:35px auto 70px;
+}
+
+.hero {
+  background:linear-gradient(120deg,#7050ce,#9a7be9);
+  border-radius:25px;
+  padding:36px;
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 16px 35px #7958d82e;
+}
+
+.hero:after {
+  content:"";
+  position:absolute;
+  width:240px;
+  height:240px;
+  border-radius:50%;
+  background:#ffffff12;
+  right:-55px;
+  top:-100px;
+}
+
+.hero-label {
+  display:inline-block;
+  background:#ffffff22;
+  border:1px solid #ffffff35;
+  border-radius:30px;
+  padding:5px 13px;
+  font-size:11px;
+  letter-spacing:1px;
+  margin-bottom:15px;
+}
+
+.hero h1 {
+  font-size:clamp(25px,4vw,36px);
+  font-weight:600;
+  line-height:1.35;
+}
+
+.hero p {
+  color:#eee8ff;
+  font-size:14px;
+  margin-top:8px;
+}
+
+.hero-meta {
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+  margin-top:23px;
+  font-size:13px;
+  color:#fff;
+}
+
+.hero-meta span {
+  display:flex;
+  gap:7px;
+  align-items:center;
+}
+
+.card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:28px;
+  margin-top:22px;
+  box-shadow:var(--shadow);
+}
+
+.section-title {
+  font-size:19px;
+  font-weight:600;
+  margin-bottom:5px;
+}
+
+.section-sub {
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:23px;
+}
+
+.form-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.field.full {
+  grid-column:1/-1;
+}
+
+.field label {
+  display:block;
+  font-size:13px;
+  font-weight:500;
+  margin-bottom:8px;
+}
+
+.field input,
+.field select {
+  width:100%;
+  height:49px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:0 14px;
+  outline:none;
+  background:#fcfbff;
+  color:var(--text);
+  transition:.2s;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px #7958d818;
+}
+
+.btn {
+  min-height:49px;
+  padding:0 23px;
+  border-radius:12px;
+  font-weight:500;
+  transition:.2s;
+}
+
+.btn-primary {
+  color:white;
+  background:linear-gradient(120deg,#8767e4,#6847c5);
+  box-shadow:0 7px 17px #7958d833;
+}
+
+.btn-primary:hover {
+  transform:translateY(-2px);
+  box-shadow:0 10px 22px #7958d844;
+}
+
+.btn:disabled {
+  opacity:.55;
+  cursor:not-allowed;
+  transform:none;
+}
+
+.btn-block {
+  width:100%;
+  margin-top:22px;
+}
+
+.notice {
+  background:#f7f3ff;
+  border:1px solid #e9e0ff;
+  border-radius:13px;
+  padding:15px;
+  font-size:12px;
+  color:#6852a2;
+  line-height:1.8;
+  margin-top:20px;
+}
+
+.hidden {
+  display:none!important;
+}
+
+/* EXAM */
+
+.exam-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.exam-heading h2 {
+  font-size:21px;
+  font-weight:600;
+}
+
+.exam-heading p {
+  font-size:12px;
+  color:var(--muted);
+}
+
+.timer {
+  background:#fff1f3;
+  color:#d83d5b;
+  border:1px solid #ffdae1;
+  border-radius:13px;
+  padding:10px 17px;
+  font-family:Inter,sans-serif;
+  font-weight:800;
+  font-size:20px;
+  min-width:112px;
+  text-align:center;
+}
+
+.timer.warning {
+  animation:pulse 1s infinite;
+}
+
+@keyframes pulse {
+  50% {opacity:.5;}
+}
+
+.progress-wrap {
+  margin:23px 0;
+}
+
+.progress-info {
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:8px;
+}
+
+.progress {
+  height:8px;
+  background:#eeeaf5;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-bar {
+  height:100%;
+  background:linear-gradient(90deg,#a68cf5,#7251d3);
+  width:0%;
+  transition:.3s;
+}
+
+.question-nav {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:22px;
+}
+
+.nav-number {
+  width:35px;
+  height:35px;
+  border-radius:10px;
+  background:#f5f2fa;
+  color:#817b91;
+  font-family:Inter,sans-serif;
+  font-size:12px;
+  font-weight:600;
+}
+
+.nav-number.answered {
+  background:#e8e0ff;
+  color:#6746c1;
+}
+
+.nav-number.current {
+  background:var(--primary);
+  color:#fff;
+}
+
+.question-card {
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:23px;
+  margin-bottom:16px;
+}
+
+.question-number {
+  color:var(--primary);
+  font-size:12px;
+  font-weight:600;
+  margin-bottom:9px;
+}
+
+.question-text {
+  font-size:18px;
+  font-weight:500;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+.options {
+  display:grid;
+  gap:11px;
+}
+
+.option {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:13px 15px;
+  cursor:pointer;
+  transition:.2s;
+  font-size:14px;
+}
+
+.option:hover {
+  border-color:#b9a6f1;
+  background:#faf8ff;
+}
+
+.option.selected {
+  background:#f1ecff;
+  border-color:var(--primary);
+  color:#5e43b0;
+}
+
+.option input {
+  accent-color:var(--primary);
+  width:17px;
+  height:17px;
+}
+
+.exam-actions {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:20px;
+}
+
+.btn-secondary {
+  background:#f0edf6;
+  color:#625b75;
+}
+
+.exam-warning {
+  color:#a06c1e;
+  background:#fff9eb;
+  border:1px solid #f5e7c3;
+  border-radius:12px;
+  padding:12px 15px;
+  font-size:12px;
+  margin-top:18px;
+}
+
+/* RESULT */
+
+.result-card {
+  text-align:center;
+  padding:40px 25px;
+}
+
+.result-icon {
+  width:80px;
+  height:80px;
+  background:#e6f8f0;
+  color:var(--success);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:38px;
+  margin:0 auto 18px;
+}
+
+.score {
+  font-family:Inter,sans-serif;
+  font-size:58px;
+  font-weight:800;
+  color:var(--primary);
+  margin:12px 0;
+}
+
+.result-message {
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.8;
+}
+
+.result-details {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:25px;
+}
+
+.result-pill {
+  background:#f7f4fc;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px 20px;
+  font-size:13px;
+}
+
+.result-pill strong {
+  display:block;
+  font-family:Inter,sans-serif;
+  font-size:19px;
+  color:var(--primary);
+}
+
+.footer {
+  text-align:center;
+  color:#aaa4b7;
+  font-size:11px;
+  margin-top:35px;
+}
+
+.loading {
+  display:inline-block;
+  width:17px;
+  height:17px;
+  border:2px solid #ffffff70;
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:spin .7s linear infinite;
+  vertical-align:middle;
+  margin-right:7px;
+}
+
+@keyframes spin {
+  to {transform:rotate(360deg);}
+}
+
+@media(max-width:600px) {
+  .topbar {
+    padding:0 4%;
+    height:64px;
+  }
+
+  .container {
+    margin-top:20px;
+  }
+
+  .hero {
+    padding:25px 22px;
+    border-radius:19px;
+  }
+
+  .card {
+    padding:21px 17px;
+    border-radius:17px;
+  }
+
+  .form-grid {
+    grid-template-columns:1fr;
+  }
+
+  .field.full {
+    grid-column:auto;
+  }
+
+  .question-text {
+    font-size:16px;
+  }
+
+  .exam-actions .btn {
+    flex:1;
+    padding:0 10px;
+  }
+
+  .score {
+    font-size:48px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-logo">O</div>
+    <div>
+      <div class="brand-name">T.OAT ENGLISH</div>
+      <div class="brand-sub">ONLINE EXAMINATION SYSTEM</div>
+    </div>
+  </div>
+
+  <div class="top-status">
+    <span class="status-dot"></span>
+    ONLINE EXAM
+  </div>
+</header>
+
+
+<main class="container">
+
+  <!-- INTRO -->
+  <section id="introSection">
+
+    <div class="hero">
+      <div class="hero-label">ENGLISH PRE-TEST</div>
+      <h1>Present Perfect<br>Simple Tense</h1>
+      <p>แบบทดสอบก่อนเรียน วิชาภาษาอังกฤษ ระดับชั้นมัธยมศึกษาปีที่ 6</p>
+
+      <div class="hero-meta">
+        <span>📝 15 Questions</span>
+        <span>⏱ 20 Minutes</span>
+        <span>🎯 15 Points</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">Student Information</h2>
+      <p class="section-sub">กรุณากรอกข้อมูลให้ครบถ้วนก่อนเริ่มทำข้อสอบ</p>
+
+      <form id="studentForm">
+
+        <div class="form-grid">
+
+          <div class="field">
+            <label for="firstName">ชื่อ (First Name)</label>
+            <input id="firstName" type="text" required
+              maxlength="60" placeholder="กรอกชื่อ">
+          </div>
+
+          <div class="field">
+            <label for="lastName">นามสกุล (Last Name)</label>
+            <input id="lastName" type="text" required
+              maxlength="60" placeholder="กรอกนามสกุล">
+          </div>
+
+          <div class="field">
+            <label for="className">ระดับชั้น (Class)</label>
+            <select id="className" required>
+              <option value="">-- เลือกห้องเรียน --</option>
+              <option value="ม.6/1">ม.6/1</option>
+              <option value="ม.6/2">ม.6/2</option>
+              <option value="ม.6/3">ม.6/3</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="number">เลขที่ (Number)</label>
+            <input id="number" type="number" min="1" max="60"
+              required placeholder="กรอกเลขที่">
+          </div>
+
+        </div>
+
+        <div class="notice">
+          <strong>ข้อควรปฏิบัติก่อนเริ่มสอบ</strong><br>
+          1. ข้อสอบมีทั้งหมด 15 ข้อ ใช้เวลาทำ 20 นาที<br>
+          2. เลือกคำตอบที่ถูกต้องที่สุดเพียงข้อเดียว<br>
+          3. กรุณาทำข้อสอบด้วยตนเอง<br>
+          4. ระบบจะตรวจจับการสลับแท็บและการออกจากหน้าจอสอบ<br>
+          5. เมื่อหมดเวลาระบบจะส่งข้อสอบโดยอัตโนมัติ
+        </div>
+
+        <button class="btn btn-primary btn-block" id="startBtn" type="submit">
+          เริ่มทำข้อสอบ →
+        </button>
+
+      </form>
+    </div>
+  </section>
+
+
+  <!-- EXAM -->
+  <section id="examSection" class="hidden">
+
+    <div class="card">
+
+      <div class="exam-top">
+        <div class="exam-heading">
+          <h2>Present Perfect Test</h2>
+          <p id="studentDisplay">Student</p>
+        </div>
+
+        <div class="timer" id="timer">20:00</div>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-info">
+          <span>ความคืบหน้าการทำข้อสอบ</span>
+          <span id="progressText">0 / 15</span>
+        </div>
+        <div class="progress">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+
+      <div class="question-nav" id="questionNav"></div>
+
+      <div id="questionsContainer"></div>
+
+      <div class="exam-actions">
+        <button class="btn btn-secondary" id="prevBtn" type="button">
+          ← ก่อนหน้า
+        </button>
+
+        <button class="btn btn-primary" id="nextBtn" type="button">
+          ข้อถัดไป →
+        </button>
+      </div>
+
+      <button class="btn btn-primary btn-block" id="submitBtn" type="button">
+        ส่งข้อสอบ
+      </button>
+
+      <div class="exam-warning">
+        ⚠️ ระบบกำลังตรวจจับการสลับหน้าจอ การเปลี่ยนแท็บ และการออกจาก Fullscreen
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- RESULT -->
+  <section id="resultSection" class="hidden">
+
+    <div class="card result-card">
+
+      <div class="result-icon">✓</div>
+
+      <h2 class="section-title">ส่งข้อสอบเรียบร้อยแล้ว!</h2>
+      <p class="section-sub" id="resultName"></p>
+
+      <div class="score" id="scoreDisplay">0/15</div>
+
+      <p class="result-message" id="resultMessage">
+        ระบบบันทึกผลการสอบของคุณเรียบร้อยแล้ว
+      </p>
+
+      <div class="result-details">
+        <div class="result-pill">
+          คะแนนที่ได้
+          <strong id="scoreDetail">0 / 15</strong>
+        </div>
+
+        <div class="result-pill">
+          คิดเป็น
+          <strong id="percentDetail">0%</strong>
+        </div>
+
+        <div class="result-pill">
+          เหตุการณ์ที่ตรวจพบ
+          <strong id="violationDetail">0</strong>
+        </div>
+      </div>
+
+      <div class="notice">
+        ขอบคุณที่ทำแบบทดสอบครับ<br>
+        Your result has been recorded successfully.
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    T.OAT ENGLISH • PRE-TEST SYSTEM<br>
+    Thanakhan-Oomsin School
+  </footer>
+
+</main>
+
+
+<script>
+/* =========================================
+   CONFIGURATION
+========================================= */
+
+// ใส่ URL ของ CLOUDFLARE WORKER ที่นี่
+// ห้ามใส่ GAS URL โดยตรงในระบบที่ใช้ API_SECRET
+
+const API_URL = 'ใส่_URL_CLOUDFLARE_WORKER_ตรงนี้';
+
+
+/* =========================================
+   APP STATE
+========================================= */
+
+const TOTAL_QUESTIONS = 15;
+const EXAM_MINUTES = 20;
+
+let sessionId = null;
+let student = null;
+let questions = [];
+let answers = {};
+let currentIndex = 0;
+let startedAt = 0;
+let timerInterval = null;
+let remainingSeconds = EXAM_MINUTES * 60;
+let violations = 0;
+let submitting = false;
+let examActive = false;
+
+
+/* =========================================
+   API REQUEST
+========================================= */
+
+async function api(action, data = {}) {
+
+  if (
+    !API_URL ||
+    API_URL.includes('ใส่_URL')
+  ) {
+    throw new Error('กรุณาตั้งค่า Cloudflare Worker URL ใน API_URL ก่อน');
+  }
+
+  const response = await fetch(API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      action,
+      ...data
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error('API connection failed: ' + response.status);
+  }
+
+  const result = await response.json();
+
+  if (result.success === false) {
+    throw new Error(result.message || 'Request failed');
+  }
+
+  return result;
+}
+
+
+/* =========================================
+   START EXAM
+========================================= */
+
+document.getElementById('studentForm')
+  .addEventListener('submit', async function(e) {
+
+    e.preventDefault();
+
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const className = document.getElementById('className').value;
+    const number = Number(document.getElementById('number').value);
+
+    if (!firstName || !lastName || !className || !number) {
+      alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+      return;
+    }
+
+    if (!Number.isInteger(number) || number < 1 || number > 60) {
+      alert('กรุณาตรวจสอบเลขที่');
+      return;
+    }
+
+    student = {
+      firstName,
+      lastName,
+      className,
+      number
+    };
+
+    const btn = document.getElementById('startBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="loading"></span> กำลังเตรียมข้อสอบ...';
+
+    try {
+
+      const result = await api('start', {
+        student
+      });
+
+      sessionId = result.sessionId;
+      questions = result.questions || [];
+
+      if (!sessionId || questions.length !== TOTAL_QUESTIONS) {
+        throw new Error('ข้อมูลข้อสอบจากเซิร์ฟเวอร์ไม่ถูกต้อง');
+      }
+
+      startedAt = Number(result.startedAt) || Date.now();
+
+      const duration = Number(result.duration) || EXAM_MINUTES;
+      remainingSeconds = duration * 60;
+
+      answers = {};
+      currentIndex = 0;
+      violations = 0;
+      submitting = false;
+
+      examActive = true;
+
+      document.getElementById('introSection').classList.add('hidden');
+      document.getElementById('examSection').classList.remove('hidden');
+
+      document.getElementById('studentDisplay').textContent =
+        student.firstName + ' ' +
+        student.lastName + ' • ' +
+        student.className + ' • เลขที่ ' +
+        student.number;
+
+      renderQuestions();
+      renderNavigation();
+      updateProgress();
+
+      startTimer();
+
+      // ขอ Fullscreen หลังจากผู้ใช้กดเริ่มสอบ
+      try {
+        if (document.documentElement.requestFullscreen) {
+          await document.documentElement.requestFullscreen();
+        }
+      } catch (err) {
+        recordViolation('fullscreen_unavailable');
+      }
+
+    } catch (err) {
+
+      alert('ไม่สามารถเริ่มสอบได้: ' + err.message);
+
+      btn.disabled = false;
+      btn.textContent = 'เริ่มทำข้อสอบ →';
+    }
+  });
+
+
+/* =========================================
+   RENDER QUESTIONS
+========================================= */
+
+function renderQuestions() {
+
+  const container = document.getElementById('questionsContainer');
+  container.innerHTML = '';
+
+  questions.forEach((q, index) => {
+
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.id = 'question-' + index;
+
+    const number = document.createElement('div');
+    number.className = 'question-number';
+    number.textContent = 'QUESTION ' + String(index + 1).padStart(2, '0');
+
+    const questionText = document.createElement('div');
+    questionText.className = 'question-text';
+    questionText.textContent = q.question;
+
+    const options = document.createElement('div');
+    options.className = 'options';
+
+    q.options.forEach((option, optionIndex) => {
+
+      const label = document.createElement('label');
+      label.className = 'option';
+
+      const radio = document.createElement('input');
+      radio.type = 'radio';
+      radio.name = 'question-' + q.id;
+      radio.value = option;
+      radio.checked = answers[q.id] === option;
+
+      radio.addEventListener('change', () => {
+
+        answers[q.id] = option;
+
+        renderNavigation();
+        updateProgress();
+
+        const labels = options.querySelectorAll('.option');
+
+        labels.forEach(item => item.classList.remove('selected'));
+        label.classList.add('selected');
+      });
+
+      const text = document.createElement('span');
+      text.textContent =
+        String.fromCharCode(65 + optionIndex) + '. ' + option;
+
+      label.appendChild(radio);
+      label.appendChild(text);
+
+      if (answers[q.id] === option) {
+        label.classList.add('selected');
+      }
+
+      options.appendChild(label);
+    });
+
+    card.appendChild(number);
+    card.appendChild(questionText);
+    card.appendChild(options);
+
+    container.appendChild(card);
+  });
+
+  showQuestion(0);
+}
+
+
+/* =========================================
+   QUESTION NAVIGATION
+========================================= */
+
+function renderNavigation() {
+
+  const nav = document.getElementById('questionNav');
+  nav.innerHTML = '';
+
+  questions.forEach((q, index) => {
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'nav-number';
+
+    btn.textContent = index + 1;
+
+    if (answers[q.id]) {
+      btn.classList.add('answered');
+    }
+
+    if (index === currentIndex) {
+      btn.classList.add('current');
+    }
+
+    btn.addEventListener('click', () => {
+      showQuestion(index);
+    });
+
+    nav.appendChild(btn);
+  });
+}
+
+
+function showQuestion(index) {
+
+  currentIndex = Math.max(
+    0,
+    Math.min(index, questions.length - 1)
+  );
+
+  questions.forEach((q, i) => {
+    const card = document.getElementById('question-' + i);
+
+    card.classList.toggle('hidden', i !== currentIndex);
+  });
+
+  document.getElementById('prevBtn').disabled =
+    currentIndex === 0;
+
+  document.getElementById('nextBtn').disabled =
+    currentIndex === questions.length - 1;
+
+  renderNavigation();
+}
+
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+  showQuestion(currentIndex - 1);
+});
+
+document.getElementById('nextBtn').addEventListener('click', () => {
+  showQuestion(currentIndex + 1);
+});
+
+
+/* =========================================
+   PROGRESS
+========================================= */
+
+function updateProgress() {
+
+  const answered = Object.keys(answers).length;
+  const percent = answered / TOTAL_QUESTIONS * 100;
+
+  document.getElementById('progressText').textContent =
+    answered + ' / ' + TOTAL_QUESTIONS;
+
+  document.getElementById('progressBar').style.width =
+    percent + '%';
+}
+
+
+/* =========================================
+   COUNTDOWN TIMER
+========================================= */
+
+function startTimer() {
+
+  clearInterval(timerInterval);
+
+  timerInterval = setInterval(() => {
+
+    if (!examActive || submitting) return;
+
+    // ใช้เวลาเริ่มสอบจาก Server เป็นหลัก
+    const elapsed = Math.floor((Date.now() - startedAt) / 1000);
+    remainingSeconds = Math.max(0, EXAM_MINUTES * 60 - elapsed);
+
+    const minutes = Math.floor(remainingSeconds / 60);
+    const seconds = remainingSeconds % 60;
+
+    const display =
+      String(minutes).padStart(2, '0') + ':' +
+      String(seconds).padStart(2, '0');
+
+    const timer = document.getElementById('timer');
+    timer.textContent = display;
+
+    timer.classList.toggle(
+      'warning',
+      remainingSeconds <= 60
+    );
+
+    if (remainingSeconds <= 0) {
+      clearInterval(timerInterval);
+      submitExam(true);
+    }
+
+  }, 500);
+}
+
+
+/* =========================================
+   ANTI-CHEATING
+========================================= */
+
+async function recordViolation(eventName) {
+
+  if (!examActive || submitting || !sessionId) return;
+
+  violations++;
+
+  try {
+    await api('violation', {
+      sessionId,
+      event: eventName
+    });
+  } catch (err) {
+    console.error('Violation logging failed:', err);
+  }
+}
+
+
+// ตรวจจับการเปลี่ยนแท็บ
+document.addEventListener('visibilitychange', () => {
+
+  if (document.hidden) {
+    recordViolation('tab_hidden');
+  }
+});
+
+
+// ตรวจจับการออกจากหน้าต่าง
+window.addEventListener('blur', () => {
+  recordViolation('window_blur');
+});
+
+
+// ตรวจจับการออกจาก Fullscreen
+document.addEventListener('fullscreenchange', () => {
+
+  if (
+    examActive &&
+    !document.fullscreenElement
+  ) {
+    recordViolation('fullscreen_exit');
+  }
+});
+
+
+// ป้องกันคลิกขวา
+document.addEventListener('contextmenu', e => {
+
+  if (examActive) {
+    e.preventDefault();
+    recordViolation('right_click');
+  }
+});
+
+
+// ป้องกัน Copy / Paste / Cut
+['copy', 'paste', 'cut'].forEach(eventName => {
+
+  document.addEventListener(eventName, e => {
+
+    if (examActive) {
+      e.preventDefault();
+      recordViolation(eventName);
+    }
+  });
+});
+
+
+// ป้องกันคีย์ลัดบางรายการ
+document.addEventListener('keydown', e => {
+
+  if (!examActive) return;
+
+  const key = e.key.toLowerCase();
+
+  const blocked =
+    (e.ctrlKey && ['c','v','x','u','p','s'].includes(key)) ||
+    (e.metaKey && ['c','v','x','u','p','s'].includes(key)) ||
+    key === 'f12';
+
+  if (blocked) {
+    e.preventDefault();
+    recordViolation('blocked_keyboard_shortcut');
+  }
+});
+
+
+// เตือนเมื่อพยายามปิดหรือรีเฟรชหน้า
+window.addEventListener('beforeunload', e => {
+
+  if (examActive && !submitting) {
+    e.preventDefault();
+    e.returnValue = '';
+  }
+});
+
+
+/* =========================================
+   SUBMIT EXAM
+========================================= */
+
+document.getElementById('submitBtn')
+  .addEventListener('click', () => {
+
+    const answered = Object.keys(answers).length;
+    const unanswered = TOTAL_QUESTIONS - answered;
+
+    let message = 'ยืนยันส่งข้อสอบหรือไม่?';
+
+    if (unanswered > 0) {
+      message =
+        'คุณยังไม่ได้ตอบ ' + unanswered +
+        ' ข้อ\nต้องการส่งข้อสอบหรือไม่?';
+    }
+
+    if (confirm(message)) {
+      submitExam(false);
+    }
+  });
+
+
+async function submitExam(autoSubmit = false) {
+
+  if (submitting || !sessionId) return;
+
+  submitting = true;
+  examActive = false;
+
+  clearInterval(timerInterval);
+
+  const submitBtn = document.getElementById('submitBtn');
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'กำลังส่งข้อสอบ...';
+
+  try {
+
+    const result = await api('submit', {
+      sessionId,
+      answers
+    });
+
+    document.getElementById('examSection').classList.add('hidden');
+    document.getElementById('resultSection').classList.remove('hidden');
+
+    document.getElementById('resultName').textContent =
+      student.firstName + ' ' +
+      student.lastName + ' • ' +
+      student.className;
+
+    document.getElementById('scoreDisplay').textContent =
+      result.score + '/' + result.total;
+
+    document.getElementById('scoreDetail').textContent =
+      result.score + ' / ' + result.total;
+
+    document.getElementById('percentDetail').textContent =
+      result.percentage + '%';
+
+    document.getElementById('violationDetail').textContent =
+      result.violations;
+
+    document.getElementById('resultMessage').textContent =
+      autoSubmit
+        ? 'หมดเวลาสอบ ระบบได้ส่งข้อสอบของคุณโดยอัตโนมัติ'
+        : 'ระบบบันทึกผลการสอบของคุณเรียบร้อยแล้ว';
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+
+    if (document.fullscreenElement) {
+      try {
+        await document.exitFullscreen();
+      } catch (e) {}
+    }
+
+  } catch (err) {
+
+    submitting = false;
+    examActive = true;
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'ส่งข้อสอบ';
+
+    alert(
+      'ไม่สามารถส่งข้อสอบได้: ' + err.message +
+      '\nกรุณาตรวจสอบอินเทอร์เน็ตแล้วลองอีกครั้ง'
+    );
+  }
+}
+
+</script>
+
+</body>
+</html>
